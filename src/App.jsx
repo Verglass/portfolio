@@ -1,10 +1,12 @@
 import Carousel from './components/Carousel.jsx'
 import tasklist from './assets/tasklist.png'
-import defaults from './assets/default.jpg'
+import tracker from './assets/tracker.png'
+import shop from './assets/shop.png'
 import { GitHub } from 'react-feather'
+import { useState, useEffect } from 'react'
 
 function App() {
-  const slides = [
+  const slidesEN = [
     {
       image: tasklist,
       title: 'Tasklist',
@@ -13,14 +15,14 @@ function App() {
       github: 'https://github.com/Verglass/TaskS',
     },
     {
-      image: tasklist,
+      image: shop,
       title: 'Tasklist2',
       description: 'A simple tasklist app made using flask.',
       link: 'http://verglass.eu.pythonanywhere.com',
       github: 'https://github.com/Verglass/TaskS',
     },
     {
-      image: tasklist,
+      image: tracker,
       title: 'Tasklist3',
       description: 'A simple tasklist app made using flask.',
       link: 'http://verglass.eu.pythonanywhere.com',
@@ -28,12 +30,58 @@ function App() {
     },
   ]
 
+  const slidesPL = [
+    {
+      image: tasklist,
+      title: 'TasklistPL',
+      description: 'A simple tasklist app made using flask.',
+      link: 'http://verglass.eu.pythonanywhere.com',
+      github: 'https://github.com/Verglass/TaskS',
+    },
+    {
+      image: shop,
+      title: 'Tasklist2',
+      description: 'A simple tasklist app made using flask.',
+      link: 'http://verglass.eu.pythonanywhere.com',
+      github: 'https://github.com/Verglass/TaskS',
+    },
+    {
+      image: tracker,
+      title: 'Tasklist3',
+      description: 'A simple tasklist app made using flask.',
+      link: 'http://verglass.eu.pythonanywhere.com',
+      github: 'https://github.com/Verglass/TaskS',
+    },
+  ]
+
+  const params = new URLSearchParams(window.location.search)
+
+  const [slides, setSlides] = useState(slidesEN)
+  const [lang, setLang] = useState('en')
+
+  useEffect(() => {
+    params.get('lang') === 'pl' && setLang('pl')
+  }, [])
+
+  useEffect(() => {
+    lang === 'pl' ? setSlides(slidesPL) : setSlides(slidesEN)
+  }, [lang])
+
   return (
     <div className='text-lg text-zinc-100 flex flex-col justify-center items-center gap-4'>
-      <div className='w-1/2 text-3xl flex flex-col justify-start gap-1 p-2'>
-        <h1>Hi, I'm Wojtek Bebel.</h1>
-        <h1>Here is some of my work:</h1>
-      </div>
+      {
+        lang === 'pl'
+          ?
+          <div className='w-1/2 text-3xl flex flex-col justify-start gap-1 p-2'>
+            <h1>Hj, I'm Wojtek Bebel.</h1>
+            <h1>Here is some of my work:</h1>
+          </div>
+          :
+          <div className='w-1/2 text-3xl flex flex-col justify-start gap-1 p-2'>
+            <h1>Hi, I'm Wojtek Bebel.</h1>
+            <h1>Here is some of my work:</h1>
+          </div>
+      }
       <div className='bg-zinc-600 py-10'>
         <div className='bg-zinc-900 max-w-[50%] rounded-md mx-auto'>
           <Carousel>
