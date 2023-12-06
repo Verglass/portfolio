@@ -18,7 +18,7 @@ function App() {
       image: shop,
       title: 'Shop Mockup',
       description: 'A mock up of an online shop I made to practice building full stack applications. It uses React with Redux for the frontend, Express for the backend and MongoDB for the database.',
-      link: 'https://verglass.github.io/fd-project/',
+      link: '',
       github: 'https://github.com/Verglass/fd-project',
     },
     {
@@ -42,12 +42,12 @@ function App() {
       image: shop,
       title: 'Sklep Internetowy',
       description: 'Mockup sklepu internetowego napisany dla praktyki tworzenia aplikacji full stack. Wykorzystuje React z Reduxem do frontendu, Express do backendu i MongoDB do bazy danych.',
-      link: 'https://verglass.github.io/fd-project/',
+      link: '',
       github: 'https://github.com/Verglass/fd-project',
     },
     {
       image: tracker,
-      title: 'Traker nawyków',
+      title: 'Tracker nawyków',
       description: 'Aplikacja do śledzenia nawyków napisana w React. Łączy się z firebase do autoryzacji i firestore do przechowywania danych.',
       link: 'https://verglass.github.io/habit-tracker/',
       github: 'https://github.com/Verglass/habit-tracker',
@@ -68,50 +68,58 @@ function App() {
   }, [lang])
 
   return (
-    <div className='text-lg text-zinc-100 flex flex-col justify-center items-center gap-4'>
+    <div className='min-h-screen w-screen text-xl bg-zinc-900 text-zinc-200 flex flex-col justify-center items-center gap-4'>
       {
         lang === 'pl'
           ?
-          <div className='w-1/2 text-3xl flex flex-col justify-start gap-1 p-2'>
-            <h1>Hej, nazywam się Wojtek Bebel.</h1>
-            <h1>Oto część mojej pracy:</h1>
+          <div className='w-1/2 text-3xl flex flex-col justify-start gap-1 p-2 shadow-md'>
+            <h1 className='text-3xl'>Hej, nazywam się <span className='text-amber-600'>Wojtek Bebel.</span></h1>
+            <h1 className='font-bold text-zinc-300'>Oto niektóre z moich aplikacji sieciowych:</h1>
           </div>
           :
-          <div className='w-1/2 text-3xl flex flex-col justify-start gap-1 p-2'>
-            <h1>Hi, I'm Wojtek Bebel.</h1>
-            <h1>Here is some of my work:</h1>
+          <div className='w-1/2 text-2xl flex flex-col justify-start gap-1 p-2 shadow-md'>
+            <h1 className='text-3xl'>Hi, I'm <span className='text-amber-600'>Wojtek Bebel</span></h1>
+            <h1 className='font-bold text-zinc-300'>Here are some of my web apps:</h1>
           </div>
       }
-      <div className='bg-zinc-600 py-10'>
-        <div className='bg-zinc-900 max-w-[50%] rounded-md mx-auto'>
+      <div className='bg-amber-700 py-10'>
+        <div className='bg-zinc-900 max-w-[65%] rounded-md mx-auto shadow-md'>
           <Carousel>
             {slides.map(slide => (
-              <div className='min-w-full flex flex-col justify-center items-center gap-4 py-6 px-20' key={slide.title}>
-                <h1 className='text-3xl'>{slide.title}</h1>
-                <img src={slide.image} />
-                <p className='px-16 py-2'>{slide.description}</p>
-                {
-                  lang === 'pl'
-                    ?
-                    <div className='self-start flex flex-col gap-4'>
-                      {slide.link && <a className='hover:text-zinc-300' href={slide.link}>Strona</a>}
-                      {slide.github && <a className='hover:text-zinc-300' href={slide.github}>Repozytorium</a>}
-                    </div>
-                    :
-                    <div className='self-start flex flex-col gap-4'>
-                      {slide.link && <a className='hover:text-zinc-300' href={slide.link}>Website</a>}
-                      {slide.github && <a className='hover:text-zinc-300' href={slide.github}>Repository</a>}
-                    </div>
-                }
+              <div className='min-w-full pt-8 pb-10 px-20' key={slide.title}>
+                <div className='text-zinc-900 bg-zinc-100 p-4 rounded flex flex-col justify-center items-center gap-4'>
+                  <h1 className='text-3xl font-bold text-amber-600'>{slide.title}</h1>
+                  <div>
+                  <hr className='w-full rounded border-2 border-zinc-800 mb-4' />
+                  <img src={slide.image} />
+                  <hr className='w-full rounded border-2 border-zinc-800 mt-4' />
+                  </div>
+                  <div className='w-full flex justify-between gap-4'>
+                    <p className='py-2'>{slide.description}</p>
+                    {
+                      lang === 'pl'
+                        ?
+                        <div className='self-start flex flex-col gap-4 text-white'>
+                          {slide.link && <a className='text-center py-2 px-4 rounded-full bg-amber-600 hover:bg-amber-700 shadow-md' href={slide.link}>Strona</a>}
+                          {slide.github && <a className='text-center py-2 px-4 rounded-full bg-amber-600 hover:bg-amber-700 shadow-md' href={slide.github}>Repozytorium</a>}
+                        </div>
+                        :
+                        <div className='self-start flex flex-col gap-4 text-white'>
+                          {slide.link && <a className='text-center py-2 px-4 rounded-full bg-amber-600 hover:bg-amber-700 shadow-md' href={slide.link}>Website</a>}
+                          {slide.github && <a className='text-center py-2 px-4 rounded-full bg-amber-600 hover:bg-amber-700 shadow-md' href={slide.github}>Repository</a>}
+                        </div>
+                    }
+                  </div>
+                </div>
               </div>
             ))}
           </Carousel>
         </div>
       </div>
-      <div className='flex gap-4'>
-        <div className='bg-zinc-200 text-zinc-900 rounded-full p-2' >
-          <a href='https://github.com/Verglass'><GitHub size={40} /></a>
-        </div>
+      <div className='flex gap-4 pb-4 shadow-md'>
+        <a className='bg-zinc-200 text-zinc-900 hover:text-zinc-600 rounded-full p-2' href='https://github.com/Verglass'>
+          <GitHub size={40} />
+        </a>
       </div>
     </div>
   )

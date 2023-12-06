@@ -28,10 +28,10 @@ const Carousel = ({ children: slides }) => {
                 {slides}
             </div>
             <div className='absolute inset-0 flex items-center justify-between p-4 invisible'>
-                <button className='p-1 rounded-full shadow bg-zinc-700/70 hover:bg-zinc-600/70 visible' onClick={prev}>
+                <button className={`p-1 pr-2 py-[6px] rounded-full shadow bg-zinc-700/70 hover:bg-zinc-600/70 ${index !== 0 ? 'visible' : 'invisible'}`} onClick={prev}>
                     <ChevronLeft size={40} />
                 </button>
-                <button className='p-1 rounded-full shadow bg-zinc-700/70 hover:bg-zinc-600/70 visible' onClick={next}>
+                <button className={`p-1 pl-2 py-[6px] rounded-full shadow bg-zinc-700/70 hover:bg-zinc-600/70 ${index !== slides.length - 1 ? 'visible' : 'invisible'}`} onClick={next}>
                     <ChevronRight size={40} />
                 </button>
             </div>
